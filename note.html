@@ -1,0 +1,334 @@
+1.数据类型
+  弱数据特性
+    "32" + 32 // 64
+    "32" + 32 // "3232"
+    "32" - 32 // 0
+
+  原始类型
+    number
+    string
+    boolean
+    null
+    undefined
+  对象类型
+    object
+      function
+      array
+      date
+
+  隐形转换
+    num - 0 —— 字符串转化为数字
+    num + " —— 数字转化为字符串
+
+  严格等于
+    === 先判断类型
+    NaN与任何比较都不相等
+    object比较为引用比较
+
+  类型包装
+    如果按一个包装类型对象来访问基本类型的话，会创建一个临时对象构建访问，访问结束后临时对象销毁
+
+  类型检测
+    typeof
+      typeof 100  "number"
+      typeof true "boolean"
+      typeof function "function"
+      typeof(undefined) "undefined"
+      typeof new Object() "object"
+      typeof [1, 2] "object"
+      typeof NaN "number"
+      typeof null "object"
+      适用于对基本类型和函数的判断 不适用判断具体类型 如不能区分数组与对象与null
+    instanceof
+      不能跨window检测
+      基于原型链判断，左操作数的原型链上是否有右操作数的prototype属性上，左操作数为对象，右操作数为构造函数，
+    Object.prototype.toString
+      Object.prototype.toString.apply([]) === "[object Array]"
+      Object.prototype.toString.apply(function(){}) === "[object Function]"
+      Object.prototype.toString.apply(null) === "[object Null]"
+      ie 6 7 8
+      Object.prototype.toString.apply(null) === "[object Object]"
+      Object.prototype.toString.apply(undefined) === "[object Undefined]"
+    constructor
+
+    duck type
+
+2.表达式
+  一种js短语，可使js解释器用来产生一个值
+
+    原始表达式
+    初始化表达式
+    函数表达式
+    属性访问表达式
+    调用表达式
+    对象创建表达式
+
+  ,运算符 整个表达都计算 但是取最右边
+
+  Object.defineProperty(obj,'x',{
+    configurable :　false,
+    value : 1
+  });
+  无法delete掉 delete返回false
+
+  in 判断key
+
+  function Foo(){}
+  Foo.protytype.x = 1;
+  var obj = new Foo();
+  obj.hasOwnProperty('x') //false
+  obj._proto_.hasOwnProperty('x') //true
+
+3.语句
+  无块级作用域
+
+  function test(){
+    var a = b = 1;
+  }
+  a为局部变量 b为全局变量
+
+  try-catch语句
+    try {
+      throw Error("oop");
+    } catch(e) {
+
+    } finally {
+
+    }
+    无论如何 内层抛出的异常 若在内层未捕获 先执行finally 再抛到外层
+
+    函数语句
+      fd(); //ok
+      function fd() {
+        return true;
+      }
+
+      fd(); //typeerror
+      var fe = function(){
+        //do
+      }
+
+    for in
+      1.顺序不确定 浏览器不同而不同
+      2.enumerable为false时不能遍历到
+      3.for in 对象属性受到原型链影响（链上enumerable属性为true也会出现）
+
+    严格模式
+      function func() {
+        'use strict';
+      }
+      1.不允许用with
+      2.不允许在函数内定义全局变量
+      3.arguments为静态副本（对象除外）
+      4.delete函数或者参数报错
+      5.delete不可配置的属性报错
+      6.重复属性名
+      7.禁止八进制字面量
+      8.eval arguments为保留字 报错
+      9.eval作用域独立
+
+4.对象
+  对象每一个属性有很多属性标签
+    writable
+    enumerable
+    configurable
+    value
+    get/set
+  _proto_
+
+  Object.create({x : 1})
+    会创建创建一个对象，并且该对象的原型指向参数
+  object.create(null)
+    会返回一个proto属性为空的对象
+
+  获得属性标签
+    Object.getOwnPropertyDescriptor(Object, 'prototype');
+  对象是否可枚举的
+    cat.propertyIsEnumerable('leg');
+  for in 过滤原型上可枚举属性
+    Obj.hasOwnProperty(key)
+  getter/setter
+    var man = {
+      name : "caoxun",
+      $age : null,
+      get age() {
+        if (this.$age == undefined) {
+          return new Date().getFullYear() - 1994;
+        } else {
+          return this.$age;
+        }
+      },
+      set age(val) {
+        val = +val;
+        if (!isNaN(val) && val > 0 && val < 150) {
+          $this.age = +val;
+        } else {
+          throw new Error("big")
+        }
+      }
+    }
+
+    若子类继承的有get set方法时候，不会在当前对象添加新属性 需要用Object.defineProperty(obj,'x',{value : 1})
+
+  属性标签
+    value -- 属性的值
+    writable -- 是否可写
+    enumerable -- 是否可枚举 影响for in（用hasOwnProperty过滤）
+    configurable -- 是否可配置（初始化属性标签后是否可以被修改 是否可以用delete删除 false不可以）
+
+    查询属性标签
+      Object.getOwnPropertyDescriptor({pro : true}, 'pro') 返回所有属性标签的值
+
+    创建带有标签的属性
+      Object.defineProperty(obj,'name',{
+        configurable : false,
+        writable : false,
+        enumerable : true,
+        value : "caoxun"
+      })
+      不定义的话全部默认为false
+      obj.name //caoxun
+
+      Object.defineProperties(person,{
+        title : {value : 'fe', enumerable : true},
+        corp : {value : 'baba', enumerable : true},
+        salary : {value : 5000, enumerable : true, writable : true},
+        luck : {
+          get : function (){
+            return Math.random() > 0.5 ? 'good' : 'bad';
+          }
+        },
+        promote : {
+          set : function (level){
+            this.salary *= 1 + level * 0.1;
+          }
+        }
+      })
+        注意get set方法可以这样书写
+
+      Object.isExtensible(obj) 是否可以扩展
+      Object.preventExtensible(obj) 阻止扩展
+
+      Object.seal(obj)
+        writable true  configuable false
+      Object.freeze(obj)
+        writable false configuable false
+      Object.isFrozen(obj)
+
+
+    对象序列化
+      JSON.stringify(obj) undefined -> null NaN -> null
+      Json.parse('{"x" : 1}')
+
+      var obj = {
+        x : 1,
+        y : 2,
+        o : {
+          o1 : 1,
+          o2 : 2,
+          toJSON : function() {
+            return this.o1 + this.o2;
+          }
+        }
+      }
+      重写toJSON来自定义序列化
+
+      valueOf()
+      toString()
+        先调用valueOf 如果返回一个对象 在调用toString
+
+
+5.数组
+  弱类型特性，数组内类型可以不相同
+    数组长度
+      2^23 - 1
+  数组方法
+    join
+      将数组转化为字符串 arr.join("_")
+      将指定字符串重复n次
+      function repeatString(str, n) {
+        return new Array(n + 1).join(str);
+      }
+    reverse
+      将数组逆序（对原数组修改）
+    sort
+      排序 sort() 按asc2排序 首字母排序（对原数组修改）
+    concat
+      合并数组
+      var arr = [1,2,3];
+      arr.concat(4,5) //[1,2,3,4,5]
+      arr.concat([10,11],13) // [1,2,3,10,11,13]
+      arr.concat([1,[2,3]]) // [1,2,3,1,[2,3]]
+    slice
+      返回一个数组的片段
+      slice(1,3) 左闭右开
+    splice
+      对数组拼接修改 (对原数组修改)
+      1个参数 分割
+      var arr = [1,2,3,4,5]
+      arr.splice(2) //return [3,4,5]
+      arr //[1,2]
+
+      2个参数 分割 从第几个开始分割几个
+      var arr = [1,2,3,4,5]
+      arr.splice(2,2) //return [3,4]
+      arr //[1,2,5]
+
+      多个参数 分割后插入
+      var arr = [1,2,3,4,5]
+      arr.splice(1,1,'a','b') //return [2]
+      arr // [1,'a','b',3,4,5]
+    //es5
+    forEach
+      //遍历数组
+      var arr = [1,2,3,4,5];
+      arr.forEach(function(x, index, a){
+        console.log(x + index + a);
+      })
+      具体数值|索引|数组
+    map
+      映射
+      var arr = [1,2,3]
+      arr.map(function(x){
+        return x + 10;
+      })
+      //[11,12,13]
+      arr;[1,2,3]
+    filter
+      数组过滤
+      var arr = [1,2,3,4,5,6,7,8,9,10];
+      arr.filter(function(x,index){
+        return index % 3 === 0 || x >= 8;
+      }) // [1,4,7,8,9,10]
+      arr不变
+    every -- 全部满足
+    some -- 某些满足
+      对每个数组元素进行判断
+
+    reduce 左->右
+      数组元素两两操作
+      var arr = [1,2,3]
+      var sum = arr.reduce(function(x,y){
+        return x + y;
+      },0)
+      6;
+      reduceRight 右->左
+    indexOf
+      indexOf(1,1)
+      从第索引1开始查找1这个值得位置
+    isArray
+      Array.IsArray([]);
+
+    判断是否为数组的方法
+      Array.IsArray([]);
+      [] instanceof Array;
+      ({}).toString.apply([]) === '[object Array]';
+      [].constructor === Array;
+6.函数
+  使用new调用 return 是基本类型 则new出来的是this 若是对象则是返回的对象
+
+  函数调用
+    foo();
+    o.method();
+    new Foo();
+    func.call(o);
