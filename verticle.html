@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>居中布局</title>
+    <style media="screen">
+    body,html {
+      height: 100%;
+    }
+    body > div {
+      height: 200px;
+      border: 1px solid black;
+    }
+    /*flex居中法*/
+    .vertical-container {
+
+      display: -webkit-flex;
+      display:         flex;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+    }
+
+
+    /*line-height 垂直居中*/
+    .line_height {
+      line-height: 200px;
+    }
+
+    /*table + vertical*/
+    .table {
+      height: 20%;
+      display: table;
+    }
+    .table>div{
+      height: 20%;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    /*百分比*/
+    .percent {
+      position: relative;
+    }
+    .percent > div{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 30%;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- flex居中法 双居中 -->
+    <div class="vertical-container">
+      <div>123</div>
+    </div>
+
+    <!-- line-height 实现垂直居中 -->
+    <div class="line_height">
+      <div>123</div>
+    </div>
+
+    <!-- table+verticle -->
+    <div class="table">
+      <div>123</div>
+    </div>
+
+    <!-- 百分比 -->
+    <div class="percent">
+      <div>1232132132121</div>
+    </div>
+  </body>
+</html>
