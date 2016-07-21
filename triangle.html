@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      body {
+        background-color: #eee;
+      }
+
+      div {
+        margin-bottom: 10px;
+      }
+
+      .all {
+        display:block;
+        width:0;
+        height:0;
+        border-bottom: 100px solid blue;
+        border-left: 100px solid red;
+        border-right: 100px solid black;
+        border-top: 100px solid yellow;
+      }
+
+
+      /*三角样式*/
+      .arrow-up {
+        display:block;
+        width:0;
+        height:0;
+        border-bottom: 20px solid blue;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+      }
+
+       /*箭头向下*/
+      .arrow-down {
+        display:block;
+        width:0;
+        height:0;
+        border-top: 20px solid blue;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+      }
+
+       /*箭头向左*/
+      .arrow-left {
+        display:block;
+        width:0;
+        height:0;
+        border-right: 20px solid blue;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+      }
+
+      /*箭头向右*/
+      .arrow-right {
+        display:block;
+        width:0;
+        height:0;
+        border-left: 20px solid blue;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+      }
+
+      /*箭头左上*/
+      .arrow-left-top {
+        display:block;
+        width:0;
+        height:0;
+        border-left: 20px solid blue;
+        border-top: 20px solid blue;
+        border-bottom: 20px solid transparent;
+        border-right: 20px solid transparent;
+      }
+
+      /*箭头左下*/
+      .arrow-left-bottom {
+        display:block;
+        width:0;
+        height:0;
+        border-left: 20px solid blue;
+        border-bottom: 20px solid blue;
+        border-top: 20px solid transparent;
+        border-right: 20px solid transparent;
+      }
+
+      /*箭头右上*/
+      .arrow-right-top {
+        display:block;
+        width:0;
+        height:0;
+        border-right: 20px solid blue;
+        border-top: 20px solid blue;
+        border-bottom: 20px solid transparent;
+        border-left: 20px solid transparent;
+      }
+
+      /*箭头右下*/
+      .arrow-right-bottom {
+        display:block;
+        width:0;
+        height:0;
+        border-right: 20px solid blue;
+        border-bottom: 20px solid blue;
+        border-top: 20px solid transparent;
+        border-left: 20px solid transparent;
+      }
+
+
+      /*包含小三角的div*/
+      .in-triangle {
+        height : 200px;
+        width : 150px;
+        background-color: yellow;
+      }
+
+      .in-triangle > header {
+        height: 40px;
+        width: 100%;
+        background-color: #fff;
+      }
+      .in-triangle > header > span{
+        position: relative;
+        display: block;
+        top: 40px;
+        left: 10px;
+        width:0;
+        height:0;
+        border-left:10px solid transparent;
+        border-right:10px solid transparent;
+        border-top:10px solid #fff;
+      }
+
+
+      .tag
+      {
+          width: 300px;
+          height: 100px;
+          border: 5px solid #09F;
+          position: relative;
+      }
+      .tag em
+      {
+          display: block;
+          border-width: 20px;
+          position: absolute;
+          bottom: -40px;
+          left: 100px;
+          border-style: solid dashed dashed;
+          border-color: #09F transparent transparent;
+      }
+      .tag span
+      {
+          display: block;
+          border-width: 20px;
+          position: absolute;
+          bottom: -33px;
+          left: 100px;
+          border-style: solid dashed dashed;
+          /*border颜色要与背景色一致*/
+          border-color: #eee transparent transparent;
+      }
+
+      .bootstrap-tooltip {
+        display: inline-block;
+      }
+
+      .bootstrap-tooltip > .tooltip-arrow{
+        display: block;
+        position: relative;
+        width: 0;
+        height: 0;
+        top: 0;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 0 5px 5px;
+        border-color: transparent transparent black;
+        border-style: solid;
+      }
+      .bootstrap-tooltip > .tooltip-word {
+        padding: 5px;
+        color: white;
+        background-color: black;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="all">
+
+    </div>
+
+    <div class="arrow-up">
+     <!--向上的三角-->
+    </div>
+    <div class="arrow-down">
+        <!--向下的三角-->
+    </div>
+    <div class="arrow-left">
+        <!--向左的三角-->
+    </div>
+    <div class="arrow-right">
+        <!--向右的三角-->
+    </div>
+
+    <div class="arrow-left-top">
+     <!--向左上的三角-->
+    </div>
+    <div class="arrow-left-bottom">
+        <!--向左下的三角-->
+    </div>
+    <div class="arrow-right-top">
+        <!--向右上的三角-->
+    </div>
+    <div class="arrow-right-bottom">
+        <!--向右下的三角-->
+    </div>
+
+    <div class="in-triangle">
+      <header>
+        <span></span>
+      </header>
+
+    </div>
+
+    <div class="tag">
+        <em></em>
+    </div>
+    <div class="tag" style="margin-top: 100px">
+        <em></em><span></span>
+    </div>
+
+    <div class="bootstrap-tooltip">
+      <span class="tooltip-arrow"></span>
+      <div class="tooltip-word">tooltip</div>
+    </div>
+  </body>
+</html>
