@@ -377,3 +377,80 @@
 
 7.闭包作用域
   闭包
+
+8.oop
+  继承
+    function Person(name,age)
+    {
+      this.name = name;
+      this.age = age;
+    }
+
+    Person.prototype.hi = function (){
+      //do something
+    }
+
+    Person.prototype.LEGS_NUM = 2;
+    Person.prototype.ARMS_NUM = 2;
+    Person.prototype.walk = function() {
+      //do something
+    }
+
+    function Student(name,age,className) {
+      Person.call(this,name,age);
+      this.className = className;
+    }
+
+    //需要一个空对象 并且对象的原型是父元素的原型，这样就可以在空对象上添加student的共有方法
+    Student.prototype = Objcet.create(Person.prototype);
+    //如果不设置的话会指向person
+    Student.prototype.constructor = Student;
+
+    Student.prototype.hi = function() {
+      //do something
+    }
+    Student.prototype.learn = function(subject) {
+      //do something
+    }
+
+    Student.prototype.x = 101;
+    boson.x //101
+
+    Student.prototype = {y : 2};
+    bosn.y; //undefined
+    bosn.x; //101;
+
+    修改prototype对象的具体属性值可以对已经创建的所有对象生效，但是重新赋值prototype不会对已经创建的对象生效，对新创建的对象可以生效
+
+  instanceof
+    左为对象 右为函数，验证的是右的原型是否在左的原型链上
+
+  正则
+    正则对象test方法
+    new RegExp("Bosn").test("Bosn sdaf") //true
+    /\d\d\d/.test("123") //true
+    . 任意字符 除了\n \r \u2028 \2029
+    \d 数字0-9
+    \D 非数字0-9
+    \w 数字0-9 或者字母a-z以及A-Z
+    \W 非\w
+    \s 空格符 tab 换页符 换行符
+    \S 非\s
+    \t \r \n \v \f tab 回车 换行 垂直制表符 换页符
+    [...] 字符范围
+    [^...] 字符范围以外
+    ^ 行首 ^Hi
+    $ 行尾 test$
+    \b 零宽单词边界 \bno 匹配 a no
+    \B 非\b
+    \转意
+    (x) 分组
+    ? 匹配尽可能少的
+    x{n} 重复n次 x{n,} 重复大于n次 x{m,n} 重复m< <n次
+    //gim
+     global 全局
+     ignoreCase 忽略大小写
+     multiline 多行
+
+     exec
+     test
