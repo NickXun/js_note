@@ -49,6 +49,15 @@
       left: 50%;
       height: 30%;
     }
+
+    /*先用绝对定位将元素左上角放在水平居中垂直居中的位置，再设置translate相对于元素自身左上方移动50%*/
+    .gyx {
+      position:absolute;
+      top:50% ;
+      left:50% ;
+      transform: translate(-50%,-50%);
+    }
+
     </style>
   </head>
   <body>
@@ -70,6 +79,10 @@
     <!-- 百分比 -->
     <div class="percent">
       <div>1232132132121</div>
+    </div>
+
+    <div class="gyx">
+      12312发生地附近卡上的计分卡圣诞节快乐风景阿斯顿四大皆空房间啊大煞风景啊上课的立法局阿斯顿
     </div>
   </body>
 </html>
