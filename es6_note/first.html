@@ -1,0 +1,99 @@
+let const
+  相比较于var 不会有变量提升
+  let和const是块级作用域，在未被定义之前使用会报错
+
+  用块级作用域代替 IIFES
+  (function(){
+    var food = "xxx";
+  })();
+
+  {
+    let food = "xxx";
+  }
+
+要维护一个this上下文的时候使用箭头函数
+  一般写法：
+  function Person(name) {
+    this.name = name;
+  }
+
+  Person.prototype.prefixName = function(arr) {
+    return arr.map(function(character){
+      return this.name + character;
+    },this)
+  }
+
+  箭头函数写法
+  function Person(name){
+    this.name = name;
+  }
+
+  Person.prototype.prefixName = function(arr) {
+    return arr.map(character => this.name + character);
+  }
+
+字符串
+  includes() 字符串.直接调用 传入字符串 包含的话就返回true 代替indexOf方法
+  repeat() 字符串.直接调用 传入数字 返回重复n次的字符串的值
+
+模板字符串
+  const name = 'Tiger';
+  const age = 13;
+  `My cat name is ${name} age is ${age}`
+  回车 空格等不用转意
+  `
+  231
+
+  `
+解构
+  结构数组
+  let [a,b,c,d] = [1,2,3,4];
+
+  结构对象
+
+Promise
+  function helloWorld (ready) {
+    return new Promise(function (resolve, reject) {
+        if (ready) {
+            resolve("Hello World!");
+        } else {
+            reject("Good bye!");
+        }
+    });
+  }
+
+  helloWorld(true).then(function (message) {
+    alert(message);
+  }, function (error) {
+    alert(error);
+  });
+
+  上面的代码实现的功能非常简单，helloWord 函数接受一个参数，如果为 true 就打印 "Hello World!"，如果为 false 就打印错误的信息。helloWord 函数返回的是一个 Promise 对象。
+
+  在 Promise 对象当中有两个重要方法————resolve 和 reject。
+
+  resolve 方法可以使 Promise 对象的状态改变成成功，同时传递一个参数用于后续成功后的操作，在这个例子当中就是 Hello World! 字符串。
+
+  reject 方法则是将 Promise 对象的状态改变为失败，同时将错误的信息传递到后续错误处理的操作。
+
+
+扩展操作符
+  arguments 与 parameters
+    arguments为传入的实参 parameter为形参
+  ...
+    var myArray = [1,2,3,4]
+    Math.max.apply(null,myArray)
+
+    现在有...操作符之后
+    Math.max(...myArray)
+
+    可以不必使用apply函数了
+
+  Rest参数
+    ...作为实参的时候可以随便传入，而作为形参(Rest参数)的时候只能作为最后一个参数
+    同时传入的数据会被转化为数组
+
+  解构赋值
+    解构传参
+      function initiateTransfer({protocol, port, delay, retries} = {})
+      更加易读清晰 有默认值 不传参数也不会报错

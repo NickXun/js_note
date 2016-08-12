@@ -6,17 +6,49 @@
   </head>
   <body>
     <div id="app">
-      {{message}}
+      <parent></parent>
     </div>
+
+    <div id="mount-point"></div>
+
   </body>
 </html>
 <script type="text/javascript" src="./vue.js"></script>
 <script>
-  var data = {
-    message : "hello world"
+
+Vue.config.debug = true;
+
+var child = Vue.extend({
+  template :　"<div>hahahahahceshichegnong</div>"
+})
+
+var parent = Vue.extend({
+  template : "<div><my-component></my-component></div>",
+  components : {
+    'my-component' : child
   }
-  new Vue({
-    el : '#app',
-    data : data
-  })
+})
+
+Vue.component('parent', parent);
+
+var vm = new Vue({
+  el : "#app"
+})
+
+
+// 创建可复用的构造器
+var Profile = Vue.extend({
+  template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>'
+})
+// 创建一个 Profile 实例
+var profile = new Profile({
+  data: {
+    firstName: 'Walter',
+    lastName: 'White',
+    alias: 'Heisenberg'
+  }
+})
+// 挂载到元素上
+profile.$mount('#mount-point')
+
 </script>

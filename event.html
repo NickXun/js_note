@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .div1 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
+
+      .div2 {
+        width: 180px;
+        height: 180px;
+        margin: 10px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div3">
+      <div class="div1">
+        <div class="div2">
+
+        </div>
+      </div>
+    </div>
+      <input type="text" name="textinput" value="">
+  </body>
+</html>
+<script type="text/javascript">
+  console.log(document.getElementsByClassName('div1'));
+
+  document.querySelector("[name='textinput']").addEventListener('keypress',function(e){
+    console.log(e);
+    e.preventDefault();
+  })
+
+  document.getElementsByClassName('div3')[0].addEventListener('click', function(e){
+    console.log("div3");
+    console.log(e);
+    return false;
+    //e.stopPropagation();
+  },true)
+
+  document.getElementsByClassName('div1')[0].addEventListener('click', function(e){
+    console.log("div1");
+    console.log(e);
+    return false;
+    //e.stopPropagation();
+  },false)
+
+  document.getElementsByClassName('div2')[0].addEventListener('click', function(e){
+    console.log("div2");
+    console.log(e);
+  },true)
+</script>
