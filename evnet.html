@@ -1,0 +1,11 @@
+除IE8以及IE8以下，都可以用addEventListener()来绑定事件 removeEventListener()来解除绑定
+  addEventListener()有三个参数
+  1-要注册处理程序的事件类型（字符串）没有on 2-指定发生响应事件应调用的函数 3-默认false 如果为true 函数将注册为捕获事件处理程序 在事件的不同调度阶段调用
+
+IE低版本的可以用attachEvent()来绑定和detachEvent()来解除绑定
+  只有2个参数 1-处理事件字符串 带on 2-指定发生响应事件应调用的函数
+
+事件冒泡：从目标元素一直冒泡到根元素
+事件捕获：从目标元素的根元素一直冒泡到该元素
+
+事件取消冒泡与取消捕获相同 e.stopPropagation()
