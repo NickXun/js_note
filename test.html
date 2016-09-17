@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<html>
+<head>
+    <title>alibaba</title>
+    <style type="text/css">
+        .header{
+            overflow: hidden;
+            margin: 5px;
+            border: 1px solid #000;
+            height: 70px;
+        }
+        .main{
+            margin: 5px;
+            overflow: hidden;
+/*          border: 1px solid #000;*/
+        }
+        .footer{
+            text-align: center;
+            margin: 5px;
+            border: 1px solid #000;
+        }
+        .logo{
+            width: 50px;
+            height: 50px;
+            float: left;
+            margin: 10px;
+            border: 1px solid #000;
+        }
+        .username{
+            border: 1px solid #000;
+            float: right;
+            width: 140px;
+            height: 20px;
+            margin-top: 40px;
+            margin-right: 10px;
+            text-align: right;
+        }
+        .column{
+            border: 1px solid #000;
+        }
+        .left{
+            float: left;
+            width: 100%;
+
+        }
+        .right{
+            float: left;
+            width: 200px;
+            margin-left: -204px;
+        }
+        .real{
+            margin-right: 210px;
+            border: 1px solid blue;
+            height: 300px;
+        }
+
+        .tooltip::after {
+          content:attr(data-tooltip);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">logo</div>
+        <div class="username">用户名</div>
+    </div>
+    <div class="main">
+        <div class="left column">
+            <div class="real">content - 自适应宽度</div>
+        </div>
+        <div class="right column">aside - 定宽200px</div>
+    </div>
+    <div class="footer">footer</div>
+
+    <div class="tooltip" data-tooltip="321321321">123</div>
+</body>
+</html>
+
+<script type="text/javascript">
+// var elems = document.getElementsByTagName('a');
+//
+// for (var i = 0; i < elems.length; i++) {
+//
+// elems[i].addEventListener('click',(function(i){
+//   return function(){
+//     alert(i);
+//   }
+// })(i))
+//
+// }
+function A(params)
+{
+  params = params || {};
+
+  for(var key in params)
+  {
+    Object.defineProperty(this, key, {
+      get: function(){
+        return params[key];
+      },
+      enumerable : false
+    })
+  }
+  return '12312';
+}
+
+var a = new A({
+  'x' : 'X',
+  'y' : 'Y',
+  'z' : 'Z'
+})
+
+
+
+</script>

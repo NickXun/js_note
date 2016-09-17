@@ -1,0 +1,37 @@
+ajax详解及跨域请求解决方案
+1.jsonp 无post方法 后台不用设置cors头 实质是<scrip></scrip>标签的src导入到本地执行 避免了同源策略
+2.后台设置cors头部
+3.对于XHR2，IE浏览器的支持是IE10以上。但是IE早在IE8时就推出了 XDomainRequest 对象进行跨域操作，一直沿用到IE10才被取代掉。因此在IE8,IE9中应该使用 XDomainRequest (XDR)来实现。
+
+
+post与get区别
+  最直观的区别就是GET把参数包含在URL中，POST通过request body传递参数。
+  GET产生一个TCP数据包；POST产生两个TCP数据包。
+  GET在浏览器回退时是无害的，而POST会再次提交请求。
+
+  GET产生的URL地址可以被Bookmark，而POST不可以。
+
+  GET请求会被浏览器主动cache，而POST不会，除非手动设置。
+
+  GET请求只能进行url编码，而POST支持多种编码方式。
+
+  GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。
+
+  GET请求在URL中传送的参数是有长度限制的，而POST么有。
+
+  对参数的数据类型，GET只接受ASCII字符，而POST没有限制。
+
+  GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。
+
+  GET参数通过URL传递，POST放在Request body中。
+
+
+repaint与reflow解决方案
+
+  避免逐项更改样式。最好一次性更改style属性，或者将样式列表定义为class并一次性更改class属性。
+
+  display:none 的元素不会引发 Reflow 和 Repaint，可以在让这些元素在 display 之前进行一些诸如颜色、尺寸什么的改变。
+
+  绝对定位具有复杂动画的元素。绝对定位使它脱离文档刘，否则会引起父元素及后续元素大量的回流。
+
+  避免循环读取offsetLeft等属性。在循环之前把它们存起来。
